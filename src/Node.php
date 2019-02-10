@@ -8,6 +8,9 @@ abstract class Node
 
     protected $attrs;
 
+
+    const LENGTH = 10;
+
     public function __construct($name, $attrs=[])
     {
         $this->name = $name;
@@ -21,5 +24,15 @@ abstract class Node
         }, array_keys($attrs), $attrs);
 
         return ' '.implode(' ', $preparedAttrs).' ';
+    }
+
+    public function toString()
+    {
+        return '';
+    }
+
+    public function isShort()
+    {
+        return strlen($this->toString()) > self::LENGTH;
     }
 }
