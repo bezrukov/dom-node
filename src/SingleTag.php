@@ -6,6 +6,6 @@ class SingleTag extends Node
 {
     public function toString()
     {
-        return '<'.$this->name.$this->printAttr($this->attrs).'>';
+        return sprintf('<%s %s/>', $this->name, $this->getAttributesToString());
     }
 }

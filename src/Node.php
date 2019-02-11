@@ -8,7 +8,6 @@ abstract class Node
 
     protected $attrs;
 
-
     const LENGTH = 10;
 
     public function __construct($name, $attrs=[])
@@ -17,22 +16,17 @@ abstract class Node
         $this->attrs = $attrs;
     }
 
-    protected function printAttr($attrs)
+    protected function getAttributesToString(): string
     {
         $preparedAttrs = array_map(function ($attr, $value) {
-            return $attr.'='.$value;
-        }, array_keys($attrs), $attrs);
+            return sprintf('%s=%s', $attr, $value);
+        }, array_keys($this->attrs), $this->attrs);
 
-        return ' '.implode(' ', $preparedAttrs).' ';
+        return implode(' ', $preparedAttrs);
     }
 
-    public function toString()
+    public function isShort(): bool
     {
-        return '';
-    }
-
-    public function isShort()
-    {
-        return strlen($this->toString()) > self::LENGTH;
+        return mb_strlen($this->getAttributesToString()) > self::LENGTH;
     }
 }

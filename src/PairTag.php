@@ -16,7 +16,13 @@ class PairTag extends Node
 
     public function toString()
     {
-        return '<'.$this->name.$this->printAttr($this->attrs).'>'.$this->body.'</'.$this->name.'>';
+        return sprintf(
+            '<%s %s>%s</%s>',
+            $this->name,
+            $this->getAttributesToString(),
+            $this->body,
+            $this->name
+        );
     }
 
 }
